@@ -1,0 +1,170 @@
+﻿project
+begin
+  projectid = {ACA8F89E-0F15-4CA3-AAC4-9A88618E0028}
+  target
+  begin
+    name = Default
+    targetid = {04755200-6845-4F58-B504-0F5EF1F257E2}
+    rootaction
+    begin
+      action.comment
+      begin
+        actiontextcolor = 8421376
+        description = "Builds hunspell.dll from the hunspell submodule (msvc\\libhunspell.vcxproj, Release_dll) with Visual Studio 2026 and copies it to binaries\\win32 and binaries\\win64. StaticRuntime.props links the C runtime statically so the dll does not need the VC\+\+ redistributable."
+        id = {0E918759-DD1D-4CEF-904B-E763A889487F}
+      end
+      action.group
+      begin
+        description = Win32
+        id = {3511AB47-0EAE-441C-8F6D-26F02974D4A7}
+        action.msbuild.execute
+        begin
+          architecture = ta32
+          buildfile = %HunspellProject%
+          disablenodereuse = true
+          enabletimeout = false
+          expandimpersonationtoken = false
+          id = {281FB85A-D3B9-4869-839B-18111CA28405}
+          impersonateusenetcredonly = false
+          impersonateuser = false
+          loglevel = llNormal
+          logprocessparameters = false
+          maxcpucount = 0
+          msbuildversion = v18
+          nologo = true
+          outputtolog = false
+          overridesdkdefault = false
+          processoraffinity = 0
+          processpriority = tpNormal
+          properties = "Configuration\=Release_dll" +
+                       "Platform\=Win32" +
+                       "PlatformToolset\=%PlatformToolset%" +
+                       "WindowsTargetPlatformVersion\=10.0" +
+                       "TargetName\=hunspell" +
+                       "OutDir\=%BuildDir%\\Win32\\bin\\" +
+                       "IntDir\=%BuildDir%\\Win32\\obj\\" +
+                       "ForceImportBeforeCppTargets\=%FBPROJECTDIR%\\StaticRuntime.props" +
+                       ""
+          sdkversion = v4.0
+          structuredlogging = true
+          targets = Rebuild
+          terminateontimeout = false
+          timeoutlength = 2
+          useerrordialogmonitor = false
+        end
+        action.directory.create
+        begin
+          fileordirectory = %BinariesDir%\\win32
+          force = true
+          id = {137DF979-4EF8-4BE1-97FF-4834162AE88B}
+        end
+        action.files.copy
+        begin
+          clearattributes = false
+          failifexists = false
+          failifzerofiles = true
+          filespec = %BuildDir%\\Win32\\bin\\hunspell.dll
+          force = false
+          id = {ED421DDB-C8DD-4BB9-A236-8D9BC2A06CFE}
+          logfilesaffected = true
+          overwrite = true
+          overwritereadonly = false
+          recurse = false
+          target = %BinariesDir%\\win32
+          targetisdir = true
+        end
+      end
+      action.group
+      begin
+        description = Win64
+        id = {50D6E459-7FC9-406B-94C9-A3E5AEBACBDE}
+        action.msbuild.execute
+        begin
+          architecture = ta32
+          buildfile = %HunspellProject%
+          disablenodereuse = true
+          enabletimeout = false
+          expandimpersonationtoken = false
+          id = {12B3B71F-6559-41D1-A00C-C36E2A3A2EF0}
+          impersonateusenetcredonly = false
+          impersonateuser = false
+          loglevel = llNormal
+          logprocessparameters = false
+          maxcpucount = 0
+          msbuildversion = v18
+          nologo = true
+          outputtolog = false
+          overridesdkdefault = false
+          processoraffinity = 0
+          processpriority = tpNormal
+          properties = "Configuration\=Release_dll" +
+                       "Platform\=x64" +
+                       "PlatformToolset\=%PlatformToolset%" +
+                       "WindowsTargetPlatformVersion\=10.0" +
+                       "TargetName\=hunspell" +
+                       "OutDir\=%BuildDir%\\x64\\bin\\" +
+                       "IntDir\=%BuildDir%\\x64\\obj\\" +
+                       "ForceImportBeforeCppTargets\=%FBPROJECTDIR%\\StaticRuntime.props" +
+                       ""
+          sdkversion = v4.0
+          structuredlogging = true
+          targets = Rebuild
+          terminateontimeout = false
+          timeoutlength = 2
+          useerrordialogmonitor = false
+        end
+        action.directory.create
+        begin
+          fileordirectory = %BinariesDir%\\win64
+          force = true
+          id = {8B5F2FC3-4F76-4E88-A512-C2F3F128F023}
+        end
+        action.files.copy
+        begin
+          clearattributes = false
+          failifexists = false
+          failifzerofiles = true
+          filespec = %BuildDir%\\x64\\bin\\hunspell.dll
+          force = false
+          id = {3590BFE3-B346-4CC3-B03B-7A5F008E1BFD}
+          logfilesaffected = true
+          overwrite = true
+          overwritereadonly = false
+          recurse = false
+          target = %BinariesDir%\\win64
+          targetisdir = true
+        end
+      end
+    end
+  end
+  variable
+  begin
+    canonicalizepath = true
+    defaultvalue = %FBPROJECTDIR%\\..\\binaries
+    name = BinariesDir
+    variablescope = vtProject
+    variabletype = btString
+  end
+  variable
+  begin
+    defaultvalue = %TEMP%\\VSoft.Hunspell
+    name = BuildDir
+    variablescope = vtProject
+    variabletype = btString
+  end
+  variable
+  begin
+    canonicalizepath = true
+    defaultvalue = %FBPROJECTDIR%\\..\\hunspell\\msvc\\libhunspell.vcxproj
+    name = HunspellProject
+    variablescope = vtProject
+    variabletype = btString
+  end
+  variable
+  begin
+    defaultvalue = v145
+    name = PlatformToolset
+    variablescope = vtProject
+    variabletype = btString
+  end
+end

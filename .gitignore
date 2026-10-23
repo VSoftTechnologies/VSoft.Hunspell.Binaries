@@ -83,3 +83,9 @@ modules/
 # The generic Delphi rules above ignore some of the extensions we ship (e.g. *.so),
 # so explicitly keep everything under Binaries\ tracked (last matching pattern wins).
 !Binaries/**
+
+# FinalBuilder per-user/per-run files
+*.fbpInf
+*.fbpbrk
+*.fbl8
+*.fb8lck

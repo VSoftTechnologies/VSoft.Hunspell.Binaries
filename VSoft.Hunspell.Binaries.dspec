@@ -1,0 +1,41 @@
+# DPM package spec file
+min dpm client version: 1.0.0
+metadata:
+  id: VSoft.Hunspell.Binaries
+  version: 1.7.5
+  description: Hunspell binaries for Win32/Win64
+  authors:
+    - Kevin Hendricks and maintainers
+  projectUrl: https://github.com/hunspell/hunspell
+  repositoryUrl: https://github.com/hunspell/hunspell
+  repositoryCommit: '#HASH#'
+  license: LGPL-2.1
+  copyright: Kevin Hendricks and maintainers
+  tags:
+    - hunspell
+    - spellcheck
+  readme: README.md
+targetPlatforms:
+  - compiler from: delphixe2
+    compiler to: delphi13.0
+    platforms:
+      - win32
+      - win64
+templates:
+  - name: default
+    source:
+      - src: /Binaries/win32/hunspell.dll
+        dest: /Binaries/win32
+        copyToBin: win32
+      - src: /Binaries/win64/hunspell.dll
+        dest: /Binaries/win64
+        copyToBin: win64
+    copyLocal:
+      - src: /Binaries/Win32/hunspell.dll
+        platforms:
+          - win32
+      - src: /Binaries/Win64/hunspell.dll
+        platforms:
+          - win64
+    environmentVariables:
+      PATH: $packageDir$\Binaries\$platform$

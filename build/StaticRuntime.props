@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Imported into hunspell\msvc\libhunspell.vcxproj via the ForceImportBeforeCppTargets
+  MSBuild property (see BuildHunspell.fbp8). Links the C/C++ runtime statically (/MT) so
+  hunspell.dll does not depend on the Visual C++ redistributable being installed.
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+</Project>
